@@ -12,7 +12,7 @@ const List = () => {
     function fetchInfo () {
         fetch(url)
         .then((response) => response.json())
-        .then((data) => console.log(data))
+        .then((data) => setTasks(data))
     }
 
     function createUsername () {
@@ -35,6 +35,16 @@ const List = () => {
                     "done": false,
                     "id": 1,
                     "label": "Wash dishes"
+                },
+                {
+                    "done": false,
+                    "id": 2,
+                    "label": "Do laundry"
+                },
+                {
+                    "done": false,
+                    "id": 3,
+                    "label": "Sweep floors"
                 }
             ]),
             headers: {
@@ -62,9 +72,11 @@ const List = () => {
                 <h1>To-Do List</h1>
                 <ul>
                     <li><input value={items} type="text" className="form-control" placeholder="To-Do" onChange={(e) => {setItems(e.target.value)}} onKeyDown= {addItemToList}/></li>
-                    {addToList.map ((a, index) => (<li onMouseEnter={e => {setShowOnHover({display: "block"});}} onMouseLeave={e => {setShowOnHover({display: "none"})}}>{a}{""}<button style={showOnHover} onClick={() => setAddToList(addToList.filter ((t, currentIndex) => index != currentIndex))}><FontAwesomeIcon icon={faX} /></button></li>))}
+                    {addToList.map ((a, index) => (<li onMouseEnter={e => {setShowOnHover({display: "block"});}} onMouseLeave={e => {setShowOnHover({display: "none"})}}>{a}{""}<button className="removeItem" style={showOnHover} onClick={() => setAddToList(addToList.filter ((t, currentIndex) => index != currentIndex))}><FontAwesomeIcon icon={faX} /></button></li>))}
+                    {tasks.map((item, index) => (<li key={index} onMouseEnter={e => {setShowOnHover({display: "block"});}} onMouseLeave={e => {setShowOnHover({display: "none"})}}>{ item.label }<button className="removeItem" style={showOnHover} onClick={() => setTasks(tasks.filter ((t, currentIndex) => index != currentIndex))}><FontAwesomeIcon icon={faX} /></button></li>))}
                 </ul>
                 <p>{addToList.length} items left</p>
+                <button className="username" onClick={createUsername}>Create Username</button>
             </div>
 	);
 };

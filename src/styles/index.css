@@ -41,7 +41,12 @@ p {
     font-size: smaller;
 }
 
-button {
+.username {
+    justify-content: center;
+    margin-left: 40px;
+}
+
+.removeItem {
     justify-content: end;
     position: absolute;
     right: 0%;
