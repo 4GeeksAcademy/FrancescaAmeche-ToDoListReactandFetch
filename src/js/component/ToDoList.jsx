@@ -40,7 +40,7 @@ const List = () => {
     }
 
     useEffect( () =>{
-    
+        createUsername();
         fetchInfo();
     }, [])
 
@@ -64,7 +64,6 @@ const List = () => {
                     {tasks && tasks.length > 0 && tasks.map ((item, index) => (<li key={index} onMouseEnter={e => {setShowOnHover({display: "block"});}} onMouseLeave={e => {setShowOnHover({display: "none"})}}>{ item.label }{""}<button className="removeItem" style={showOnHover} onClick={() => deleteItemFromList(index)}><FontAwesomeIcon icon={faX} /></button></li>))}
                 </ul>
                 <p>{tasks.length} items left</p>
-                <button className="username" onClick={createUsername}>Create Username</button>
             </div>
 	);
 };
